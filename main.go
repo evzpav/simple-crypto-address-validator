@@ -36,8 +36,6 @@ func validateAddressHandler(w http.ResponseWriter, r *http.Request, ps httproute
 	address := ps.ByName("address")
 	var ret validationReturn
 	ret.Ok = true
-	crypto = strings.ToLower(crypto)
-
 	isValid, err := validateAddress(crypto, address)
 	if err != nil {
 		ret.Ok = false
@@ -56,6 +54,7 @@ func validateAddressHandler(w http.ResponseWriter, r *http.Request, ps httproute
 }
 
 func validateAddress(crypto, address string) (bool, error) {
+	crypto = strings.ToLower(crypto)
 	length := len(address)
 	oldBtcAddress := (length >= 25 || length <= 34) && (address[0] == '1' || address[0] == '3')
 	switch crypto {
@@ -65,13 +64,15 @@ func validateAddress(crypto, address string) (bool, error) {
 	case "bch":
 		if strings.Contains(address, ":") {
 			address = strings.Split(address, ":")[1]
+			return isBchCashAddressValid(address), nil
 		}
-		return oldBtcAddress || (length == 42 && (address[0] == 'p' || address[0] == 'q')), nil
+		return oldBtcAddress || isBchCashAddressValid(address), nil
+
 	case "btg":
 		return (length >= 25 || length <= 34) && (address[0] == 'G' || address[0] == 'A'), nil
 	case "dgb":
 		return (length >= 25 || length <= 34) && (address[0] == 'D'), nil
-	case "dsh":
+	case "dsh", "dash":
 		return length == 34 && (address[0] == 'X' || address[0] == '7'), nil
 	case "eth":
 		return length == 42 && address[0:2] == "0x", nil
@@ -84,6 +85,10 @@ func validateAddress(crypto, address string) (bool, error) {
 	case "zec":
 		return length == 35 && address[0] == 't', nil
 	default:
-		return false, errors.New("Cryptocurrency not available")
+		return false, errors.New("Cryptocurrency not available: " + crypto)
 	}
+}
+
+func isBchCashAddressValid(address string) bool {
+	return len(address) == 42 && (address[0] == 'p' || address[0] == 'q')
 }
