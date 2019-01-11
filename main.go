@@ -35,12 +35,14 @@ func validateAddressHandler(w http.ResponseWriter, r *http.Request, ps httproute
 	crypto := ps.ByName("crypto")
 	if crypto == "" {
 		w.WriteHeader(http.StatusBadRequest)
+		return
 	}
 
 	address := ps.ByName("address")
 
 	if address == "" || len(address) < 4 {
 		w.WriteHeader(http.StatusBadRequest)
+		return
 	}
 	var ret validationReturn
 	ret.Ok = true
@@ -55,6 +57,7 @@ func validateAddressHandler(w http.ResponseWriter, r *http.Request, ps httproute
 	valReturn, err := json.Marshal(&ret)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
+		return
 	}
 	w.WriteHeader(http.StatusOK)
 	w.Write(valReturn)
