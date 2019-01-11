@@ -9,7 +9,7 @@ It is very simple but saves time not waiting for node to reply for failure.
 ```
 go build 
 ./simple-crypto-address-validator
-localhost:8080/validate/btc/1CFNjwLjZdSKB8nZopxhLaR8vvqaQKD3Bi
+localhost:8888/validate/btc/1CFNjwLjZdSKB8nZopxhLaR8vvqaQKD3Bi
 ```
 
 ### Success return:

@@ -20,7 +20,7 @@ func main() {
 	router.GET("/", index)
 	router.GET("/validate/:crypto/:address", validateAddressHandler)
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":8888", router))
 }
 
 type validationReturn struct {
@@ -33,7 +33,15 @@ type validationReturn struct {
 
 func validateAddressHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	crypto := ps.ByName("crypto")
+	if crypto == "" {
+		w.WriteHeader(http.StatusBadRequest)
+	}
+
 	address := ps.ByName("address")
+
+	if address == "" || len(address) < 4 {
+		w.WriteHeader(http.StatusBadRequest)
+	}
 	var ret validationReturn
 	ret.Ok = true
 	isValid, err := validateAddress(crypto, address)
@@ -46,7 +54,7 @@ func validateAddressHandler(w http.ResponseWriter, r *http.Request, ps httproute
 	ret.Address = address
 	valReturn, err := json.Marshal(&ret)
 	if err != nil {
-		log.Fatal(err)
+		w.WriteHeader(http.StatusInternalServerError)
 	}
 	w.WriteHeader(http.StatusOK)
 	w.Write(valReturn)
