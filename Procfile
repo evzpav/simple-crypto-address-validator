@@ -1,1 +1,1 @@
-web: address-validator
+web: simple-crypto-address-validator
