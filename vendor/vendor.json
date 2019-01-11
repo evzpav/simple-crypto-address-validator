@@ -1,0 +1,13 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "z/DzcKNumSHzzxg9Widbi9KgwNw=",
+			"path": "github.com/julienschmidt/httprouter",
+			"revision": "348b672cd90d8190f8240323e372ecd1e66b59dc",
+			"revisionTime": "2018-07-15T16:18:54Z"
+		}
+	],
+	"rootPath": "evandro/simple-crypto-address-validator"
+}

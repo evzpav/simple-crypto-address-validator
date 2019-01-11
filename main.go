@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/julienschmidt/httprouter"
@@ -15,12 +16,19 @@ func index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	fmt.Fprint(w, "Cryptocurrency address validator!\n")
 }
 
+var environment = "prod"
+
 func main() {
 	router := httprouter.New()
 	router.GET("/", index)
 	router.GET("/validate/:crypto/:address", validateAddressHandler)
 
-	log.Fatal(http.ListenAndServe(":8888", router))
+	port := "8888"
+	if environment == "prod" {
+		port = os.Getenv("PORT")
+	}
+
+	log.Fatal(http.ListenAndServe(":"+port, router))
 }
 
 type validationReturn struct {
