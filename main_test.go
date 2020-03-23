@@ -11,11 +11,10 @@ type walletAddressInput struct {
 
 var walletAddresses = []walletAddressInput{
 	{Crypto: "btc", Address: "1CFNjwLjZdSKB8nZopxhLaR8vvqaQKD3Bi"},                             //old btc type
-	{Crypto: "BTC", Address: "bc1qc7slrfxkknqcq2jevvvkdgvrt8080852dfjewde450xdlk4ugp7szw5tk9"}, // bech32
 	{Crypto: "BTC", Address: "bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq"},                     // bech32
-	{Crypto: "bch", Address: "qq7ujnfl6tqx7xcdsdsrsqlqgqz8rm5stsvgx2kcvu"},                     // cash address
-	{Crypto: "bch", Address: "bitcoincash:qq7ujnfl6tqx7xcdsdsrsqlqgqz8rm5stsvgx2kcvu"},         // cash address
-	{Crypto: "bch", Address: "16dhNPnPp346wzrRTkArKhqPM1ELeJDvRr"},
+	// {Crypto: "bch", Address: "qq7ujnfl6tqx7xcdsdsrsqlqgqz8rm5stsvgx2kcvu"},                     // cash address
+	// {Crypto: "bch", Address: "bitcoincash:qq7ujnfl6tqx7xcdsdsrsqlqgqz8rm5stsvgx2kcvu"},         // cash address
+	// {Crypto: "bch", Address: "16dhNPnPp346wzrRTkArKhqPM1ELeJDvRr"},
 	{Crypto: "BTG", Address: "GakMJVF7Du16VK9dpN6nhJyLUPLXkTfqSY"},
 	{Crypto: "DGB", Address: "D59P8MiMXkjs7HPn31zAnUSvRNwvNZUBYa"},
 	{Crypto: "DASH", Address: "XiHMBEic8q8wX5aKqVv6zRFec7cAuYGjBV"},

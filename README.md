@@ -1,15 +1,16 @@
-# simple-crypto-address-validator
+# Simple Crypto Address Validator
 
-## Simplistic cryptocurrency address validator that checks length and first chars of wallet address.
+Simplistic cryptocurrency address validator that checks length and first chars of wallet address.
 Usage: get request to endpoint to verify if address is valid or not after user fills input.
 It is very simple but saves time not waiting for node to reply for failure.
 
 
-### Run locally :
-```
-go build 
-./simple-crypto-address-validator
-localhost:8888/validate/btc/1CFNjwLjZdSKB8nZopxhLaR8vvqaQKD3Bi
+## Run locally :
+```bash
+go run main.go
+# Server will be running on http://localhost:8888
+
+curl localhost:8888/validate/btc/1CFNjwLjZdSKB8nZopxhLaR8vvqaQKD3Bi
 ```
 
 ### Success return:
