@@ -12,10 +12,6 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-func index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	fmt.Fprint(w, "Cryptocurrency address validator!\n")
-}
-
 func main() {
 	router := httprouter.New()
 	router.GET("/", index)
@@ -36,6 +32,10 @@ type validationReturn struct {
 	Address string `json:"address"`
 	IsValid bool   `json:"valid"`
 	Error   string `json:"error,omitempty"`
+}
+
+func index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	fmt.Fprint(w, "Cryptocurrency address validator!\n")
 }
 
 func validateAddressHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
