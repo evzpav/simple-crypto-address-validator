@@ -11,6 +11,7 @@ go run main.go
 # Server will be running on http://localhost:8888
 
 curl localhost:8888/validate/btc/1CFNjwLjZdSKB8nZopxhLaR8vvqaQKD3Bi
+curl http://addressvalidator.evzpav.com/validate/btc/1CFNjwLjZdSKB8nZopxhLaR8vvqaQKD3Bi
 ```
 
 ### Success return:
